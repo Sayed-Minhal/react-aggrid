@@ -1,98 +1,52 @@
 import React from "react";
-import  { fetchGridData }  from './api'
-import { AgGridReact } from "ag-grid-react";
-import 'ag-grid-community/dist/styles/ag-grid.css';
-import 'ag-grid-community/dist/styles/ag-theme-balham.css';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+import DefaultGrid from "./Components/DefaultGrid"
+import ThemedGrid from "./Components/ThemedGrid"
+const HomeComponent = () => {
+	return (
+	<Router>
+	<nav  className="topnav">
+	
+	<Link to="/" >
+		Default Grid
+	</Link>
+	
+	<Link to="/themed" >
+		Themed Grid
+	</Link>
+	
+	</nav>
+        
+			<Switch>
+			<Route path="/themed">
+				<ThemedGrid />
+			</Route>
+			<Route path="/">
+				<DefaultGrid />
+			</Route>
+			
+			</Switch>
+		</Router>
 
-class GridExample extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      columnDefs: [
-        {
-          field: "athlete",
-          width: 150,
-		  headerHeight:170,
-          filter: "agTextColumnFilter"
-        },
-        {
-          field: "age",
-          width: 90
-        },
-        {
-          field: "country",
-          width: 120
-        },
-        {
-          field: "year",
-          width: 90
-        },
-        {
-          field: "date",
-          width: 110
-        },
-        {
-          field: "gold",
-          width: 100,
-          filter: false
-        },
-        {
-          field: "silver",
-          width: 100,
-          filter: false
-        },
-        {
-          field: "bronze",
-          width: 100,
-          filter: false
-        },
-        {
-          field: "total",
-          width: 100,
-          filter: false
-        }
-      ],
-      sideBar: "filters",
-      rowData: []
-    };
-  }
-  
-  getGridData = async () =>{
-	const data = await fetchGridData().then((Response)=>{
-		this.gridApi.setRowData(Response.data);
-	});
-  }
-
-  onGridReady = params => {
-    this.gridApi = params.api;
-    this.gridColumnApi = params.columnApi;
-	this.getGridData();
-  };  
-
-  render() {
-    return (
-        <div
-          id="myGrid"
-          style={{
-            height: "600px",
-            width: "1000px"
-          }}
-          className="ag-theme-balham"
-        >
-          <AgGridReact
-            columnDefs={this.state.columnDefs}
-            defaultColDef={{...this.state.defaultColDef}}
-            sideBar={this.state.sideBar}
-            onGridReady={this.onGridReady}
-            rowData={this.state.rowData}
-          />
-		  <button onClick={this.onInsertRowAt2}>Add</button>
-        </div>
-      
     );
-  }
 }
 
-//render(<GridExample />, document.querySelector("#root"));
+export default HomeComponent;
 
-export default GridExample;
+
+
+
+
+
+
+
+
+
+
+
+
