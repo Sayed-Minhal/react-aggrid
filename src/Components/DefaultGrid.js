@@ -3,62 +3,18 @@ import  { fetchGridData }  from '../api'
 import { AgGridReact } from "ag-grid-react";
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
-
+import { columnDefinitions } from '../shared';
 class DefaultGrid extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      columnDefs: [
-        {
-          field: "athlete",
-          width: 150,
-		  headerHeight:170,
-          filter: "agTextColumnFilter"
-        },
-        {
-          field: "age",
-          width: 90
-        },
-        {
-          field: "country",
-          width: 120
-        },
-        {
-          field: "year",
-          width: 90
-        },
-        {
-          field: "date",
-          width: 110
-        },
-        {
-          field: "gold",
-          width: 100,
-          filter: false
-        },
-        {
-          field: "silver",
-          width: 100,
-          filter: false
-        },
-        {
-          field: "bronze",
-          width: 100,
-          filter: false
-        },
-        {
-          field: "total",
-          width: 100,
-          filter: false
-        }
-      ],
-      sideBar: "filters",
-      rowData: []
+		columnDefs: columnDefinitions,
+		rowData: []
     };
   }
   
   getGridData = async () =>{
-	const data = await fetchGridData().then((Response)=>{
+	await fetchGridData().then((Response)=>{
 		this.gridApi.setRowData(Response.data);
 	});
   }
@@ -81,8 +37,6 @@ class DefaultGrid extends React.Component {
         >
           <AgGridReact
             columnDefs={this.state.columnDefs}
-            defaultColDef={{...this.state.defaultColDef}}
-            sideBar={this.state.sideBar}
             onGridReady={this.onGridReady}
             rowData={this.state.rowData}
           />

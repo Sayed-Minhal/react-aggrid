@@ -5,8 +5,8 @@ import {
   Route,
   Link
 } from "react-router-dom";
-import DefaultGrid from "./Components/DefaultGrid"
-import ThemedGrid from "./Components/ThemedGrid"
+import DefaultGrid from "./components/DefaultGrid"
+import ThemedGrid from "./components/ThemedGrid"
 const HomeComponent = () => {
 	return (
 	<Router>
