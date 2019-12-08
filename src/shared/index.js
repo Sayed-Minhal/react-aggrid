@@ -42,3 +42,9 @@ export const columnDefinitions = [
           filter: false
         }
       ];
+	 
+	 export const navBar = [
+	 {path:"/", label:"Default Grid"},
+	 {path:"/themed", label:"Themed Grid"},
+	 {path:"/columnfunctions", label:"Column Functions"}
+	 ]

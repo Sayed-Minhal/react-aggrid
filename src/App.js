@@ -2,27 +2,21 @@ import React from "react";
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
-import DefaultGrid from "./components/DefaultGrid"
-import ThemedGrid from "./components/ThemedGrid"
+import DefaultGrid from "./components/DefaultGrid";
+import ThemedGrid from "./components/ThemedGrid";
+import ColumnFunctions from "./components/ColumnFunctions";
+import NavBar from "./components/common/NavBar";
 const HomeComponent = () => {
 	return (
 	<Router>
-	<nav  className="topnav">
-	
-	<Link to="/" >
-		Default Grid
-	</Link>
-	
-	<Link to="/themed" >
-		Themed Grid
-	</Link>
-	
-	</nav>
+	<NavBar />
         
 			<Switch>
+			<Route path="/columnfunctions">
+				<ColumnFunctions />
+			</Route>
 			<Route path="/themed">
 				<ThemedGrid />
 			</Route>
